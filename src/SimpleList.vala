@@ -54,7 +54,11 @@ namespace SimpleList {
             assert (index >= 0 && index < items.length);
         }
 
-        public virtual void remove_at (int index) {}
+        public void remove_at (int index) {
+            assert_if_invalid_index (index);
+            items[index] = null; // Помечаем элемент как null
+            compact (); // Немедленно уплотняем массив
+        }
 
         public virtual void compact () {}
     }
@@ -65,13 +69,6 @@ namespace SimpleList {
         public LazyCompactingList.from_array (T[] array)
         {
             base.from_array (array);
-        }
-
-        public override void remove_at (int index) {
-            assert_if_invalid_index (index);
-            items[index] = null;
-
-            compact ();
         }
 
         public override void compact () {
@@ -94,12 +91,6 @@ namespace SimpleList {
         public AutoCompactingList.from_array (T[] array)
         {
             base.from_array (array);
-        }
-
-        public override void remove_at (int index) {
-            assert_if_invalid_index (index);
-            items[index] = null; // Помечаем элемент как null
-            compact (); // Немедленно уплотняем массив
         }
 
         public override void compact () {
