@@ -28,7 +28,7 @@ namespace SimpleList {
             protected set { items.resize (value); }
         }
 
-        public T last { public get { return items[this.size]; } }
+        public T last { public get { return items[this.size - 1]; } }
 
         protected SimpleList.from_array (T[] array)
         {
