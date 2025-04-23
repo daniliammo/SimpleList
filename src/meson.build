@@ -1,5 +1,7 @@
 simplelist_sources = [
   'SimpleList.vala',
+  'LazyCompactingList.vala',
+  'ActiveCompactingList.vala',
 ]
 
 simplelist_deps = [

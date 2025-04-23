@@ -55,79 +55,17 @@ namespace SimpleList {
             assert (index >= 0 && index < items.length);
         }
 
-        public void remove_at (int index) {
+        public void safe_remove_at (int index) {
             assert_if_invalid_index (index);
             items[index] = null; // Помечаем элемент как null
             compact (); // Немедленно уплотняем массив
         }
 
+        public void unsafe_remove_at (int index) {
+            items[index] = null; // Помечаем элемент как null
+            compact (); // Немедленно уплотняем массив
+        }
+
         public virtual void compact () {}
-    }
-
-    // All indexes always correct
-    public class LazyCompactingList<T>: SimpleList<T> {
-
-        public LazyCompactingList.from_array (T[] array)
-        {
-            base.from_array (array);
-        }
-
-        public override void compact () {
-            int nullVariablesCount = 0;
-
-            for (int i = items.length - 1; i >= 0; i--) {
-                if (items[i] == null) {
-                    nullVariablesCount++;
-                }
-                if (items[i] != null) {
-                    break;
-                }
-            }
-            size -= nullVariablesCount;
-        }
-    }
-
-    public class AutoCompactingList<T>: SimpleList<T> {
-
-        public AutoCompactingList.from_array (T[] array)
-        {
-            base.from_array (array);
-        }
-
-        public override void compact () {
-            int first_null_at = -1; // Позиция первого null в массиве
-            int non_null_count = 0; // Количество не-null элементов
-
-            // Находим первый null и считаем не-null элементы
-            for (int i = 0; i < items.length; i++) {
-                if (items[i] == null) {
-                    if (first_null_at == -1) {
-                        first_null_at = i;
-                    }
-                } else {
-                    non_null_count++;
-                }
-            }
-
-            // Если null только в конце, просто ресайзим массив
-            if (first_null_at == non_null_count) {
-                size = non_null_count;
-                return;
-            }
-
-            // Если null внутри массива, пересобираем его
-            if (first_null_at != -1 && first_null_at < non_null_count) {
-                var new_items = new T[non_null_count];
-                int new_index = 0;
-
-                for (int i = 0; i < items.length; i++) {
-                    if (items[i] != null) {
-                        new_items[new_index++] = items[i];
-                    }
-                }
-
-                items = new_items;
-            }
-        }
     }
 }
