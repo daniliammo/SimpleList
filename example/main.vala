@@ -9,11 +9,11 @@ public abstract class Program {
     public static int main() {
         list = new LazyCompactingList<int?> ();
 
-        for (int i = 0; i < 18; i++) {
-            list.add(52);
+        for (int i = 0; i < 5; i++) {
+            list.add(2);
         }
 
-        list.safe_set(0, 42);
+        list.safe_set(0, 3);
 
         print_list();
         return 0;
@@ -25,7 +25,7 @@ public abstract class Program {
         }
 
         for (int i = 0; i < list.items.length; i++) {
-            print(@"item $i: " + list.items[i].to_string() + "\n");
+            print(@"item $i: " + list.safe_get(i).to_string() + "\n");
         }
 
         print("size: " + list.size.to_string() + "\n");
