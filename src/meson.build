@@ -7,14 +7,14 @@ simplelist_deps = [
   dependency('gobject-2.0'),
 ]
 
-#c_compiler_arguments = ['-DG_DISABLE_CHECKS']
-#add_project_arguments(c_compiler_arguments, language: 'c')
+c_compiler_arguments = ['-DG_DISABLE_CHECKS']
+add_project_arguments(c_compiler_arguments, language: 'c')
 
 c_linker_arguments = ['-Ofast']
 add_project_link_arguments(c_linker_arguments, language: 'c')
 
 lib = library(
-  'simplelist',
+  'SimpleList',
 
   simplelist_sources,
   dependencies: simplelist_deps,
