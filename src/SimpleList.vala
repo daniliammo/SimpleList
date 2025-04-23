@@ -21,7 +21,7 @@
 namespace SimpleList {
 
     protected class SimpleList<T> {
-        protected T[] items;
+        public T[] items;
 
         public int size {
             public get { return items.length; }
@@ -29,6 +29,7 @@ namespace SimpleList {
         }
 
         public T last { public get { return items[this.size - 1]; } }
+
 
         protected SimpleList.from_array (T[] array)
         {
@@ -46,8 +47,8 @@ namespace SimpleList {
         }
 
         public void add (T value) {
-            items.resize (items.length + 1);
-            items[size] = value;
+            size += 1;
+            items[size - 1] = value;
         }
 
         protected void assert_if_invalid_index (int index) {
