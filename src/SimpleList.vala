@@ -21,7 +21,7 @@
 namespace SimpleList {
 
     protected class SimpleList<T> {
-        public T?[] items;
+        public T[] items;
 
         public int size {
             public get { return items.length; }
@@ -31,7 +31,7 @@ namespace SimpleList {
         public T last { public get { return items[this.size - 1]; } }
 
 
-        protected SimpleList.from_array (T?[] array)
+        protected SimpleList.from_array (T[] array)
         {
             this.items = array;
         }
@@ -65,9 +65,9 @@ namespace SimpleList {
     }
 
     // All indexes always correct
-    public class LazyCompactingList<T>: SimpleList<T?> {
+    public class LazyCompactingList<T>: SimpleList<T> {
 
-        public LazyCompactingList.from_array (T?[] array)
+        public LazyCompactingList.from_array (T[] array)
         {
             base.from_array (array);
         }
@@ -87,9 +87,9 @@ namespace SimpleList {
         }
     }
 
-    public class AutoCompactingList<T>: SimpleList<T?> {
+    public class AutoCompactingList<T>: SimpleList<T> {
 
-        public AutoCompactingList.from_array (T?[] array)
+        public AutoCompactingList.from_array (T[] array)
         {
             base.from_array (array);
         }
