@@ -14,3 +14,4 @@ valac = meson.get_compiler('vala')
 pkg = import('pkgconfig')
 
 subdir('src')
+subdir('example')
