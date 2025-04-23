@@ -2,9 +2,11 @@
 
 ## RU-README(Current), [EN-README](https://github.com/daniliammo/SimpleList)
 
+## Зачем?
+* Был создан, так как `Gee.Array` потребляет много памяти и в нем возможны утечки.
+
 ## Цели
 * Реализация простого, быстрого, и мало потребляющего списка.
-* Был создан, так как `Gee.Array` потребляет много памяти и в нем возможны утечки.
 * Полностью реализовать на языке Vala.
 
 ## Реализации списков
@@ -27,8 +29,14 @@
 		* Исполняемый файл появится в `build/example`.
 
 
-# Билдинг проекта
-* 	- Сконфигурируйте проект. Запустите `meson build`
+## Ограничения
+* Ограничения `foreach`
+	- Не используйте `foreach` вместе с `non-nullable` типами (например: `int`, `uint`)
+		* Безопасно даже для `foreach`: `LazyCompactingList<int?>` или `ActiveCompactingList<int?>` 
+		* Небезопасно для `foreach`: `LazyCompactingList<int>` или `ActiveCompactingList<int>` 
+
+## Билдинг проекта
+* Cконфигурируйте проект. Запустите `meson build`
 	- Перейдите в директорию `build`. Запустите `cd build`
 	- Забилдите проект. Запустите `ninja` или `ninja install` если хотите установить библиотеку.
 	- `libSimpleList.so`, `SimpleList.h`, `SimpleList.vapi` появятся в `build/src`
