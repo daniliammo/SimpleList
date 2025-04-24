@@ -15,8 +15,9 @@ add_project_arguments(c_compiler_arguments, language: 'c')
 c_linker_arguments = ['-Ofast']
 add_project_link_arguments(c_linker_arguments, language: 'c')
 
+# Нужно обязательно название в lowercase. если не lowercase то линкер может запутаться.
 lib = library(
-  'SimpleList',
+  'simplelist',
 
   simplelist_sources,
   dependencies: simplelist_deps,
@@ -25,13 +26,13 @@ lib = library(
 )
 
 pkg.generate(
-  name: 'SimpleList',
-  description: 'SimpleList',
+  name: 'simplelist',
+  description: 'SimpleList library',
 
   libraries: lib,
   version: meson.project_version(),
-  subdirs: 'SimpleList',
-  filebase: 'SimpleList',
+  subdirs: 'simplelist',
+  filebase: 'simplelist',
   requires: ['glib-2.0', 'gobject-2.0'],
 )
 
