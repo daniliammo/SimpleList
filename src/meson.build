@@ -27,7 +27,7 @@ lib = library(
 
 pkg.generate(
   name: 'simplelist',
-  description: 'SimpleList library',
+  description: 'Simple List. Fully written in Vala. High-performance dynamic lists for Vala with automatic memory compaction. Choose between lazy or aggressive compaction strategies. ',
 
   libraries: lib,
   version: meson.project_version(),
